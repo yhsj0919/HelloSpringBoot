@@ -9,7 +9,7 @@ import xyz.yhsj.hello.dao.TodoDao;
 import java.util.List;
 
 /**
- * 数据库操作服务
+ * 数据服务,业务逻辑
  * Created by LOVE on 2016/12/28 028.
  */
 @Service

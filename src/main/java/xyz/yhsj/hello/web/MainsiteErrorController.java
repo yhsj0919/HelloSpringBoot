@@ -39,6 +39,7 @@ public class MainsiteErrorController implements ErrorController {
     @RequestMapping(value = ERROR_PATH, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object error(HttpServletRequest request, HttpServletResponse response) {
+        //用来解决乱码
         response.setCharacterEncoding("utf-8");
         response.setStatus(200);
         return "接口不存在";
