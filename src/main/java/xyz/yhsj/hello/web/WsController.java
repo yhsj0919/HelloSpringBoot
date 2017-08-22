@@ -3,10 +3,7 @@ package xyz.yhsj.hello.web;
 
 import org.springframework.stereotype.Component;
 
-import javax.websocket.OnClose;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
+import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -78,8 +75,9 @@ public class WsController {
      *
      * @OnError
      */
+    @OnError
     public void onError(Session session, Throwable error) {
-        System.out.println("发生错误");
+        System.out.println("发生错误" + session.getId());
         error.printStackTrace();
     }
 
