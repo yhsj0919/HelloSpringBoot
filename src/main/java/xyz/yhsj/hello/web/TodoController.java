@@ -8,6 +8,8 @@ import xyz.yhsj.hello.bean.TodoBean;
 import xyz.yhsj.hello.service.TodoService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -53,17 +55,30 @@ public class TodoController {
      * 新增方法
      */
     @RequestMapping(method = RequestMethod.POST)
-    public String add(@RequestBody String requestBody) {
+    public String add(@RequestBody TodoBean todoBean) {
 
-        JSONObject jsonObject = JSONObject.parseObject(requestBody);
+//        Map<String, String[]> params = request.getParameterMap();
+//        String bodyparams = "";
+//        try {
+//            BufferedReader br = request.getReader();
+//            String str;
+//            while ((str = br.readLine()) != null) {
+//                bodyparams += str;
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        String content = jsonObject.getString("content");
-        int status = jsonObject.getInteger("status");
-        TodoBean todoBean = new TodoBean();
 
-        todoBean.setContent(content);
+//        JSONObject jsonObject = JSONObject.parseObject(requestBody);
+
+//        String content = jsonObject.getString("content");
+//        int status = jsonObject.getInteger("status");
+//        TodoBean todoBean = new TodoBean();
+
+//        todoBean.setContent(content);
         todoBean.setTime(new Date());
-        todoBean.setStatus(status);
+//        todoBean.setStatus(status);
         try {
             this.todoService.add(todoBean);
             return "新增完成";

@@ -55,13 +55,13 @@ public class ExceptionController implements ErrorController {
      * @param response
      * @return
      */
-    @RequestMapping(produces = "text/html", value = "404")
-    public ModelAndView errorHtml404(HttpServletRequest request, HttpServletResponse response) {
-        response.setStatus(getStatus(request).value());
-        Map<String, Object> model = getErrorAttributes(request,
-                isIncludeStackTrace(request, MediaType.TEXT_HTML));
-        return new ModelAndView("error/404", model);
-    }
+//    @RequestMapping(produces = "text/html", value = "404")
+//    public ModelAndView errorHtml404(HttpServletRequest request, HttpServletResponse response) {
+//        response.setStatus(getStatus(request).value());
+//        Map<String, Object> model = getErrorAttributes(request,
+//                isIncludeStackTrace(request, MediaType.TEXT_HTML));
+//        return new ModelAndView("error/404", model);
+//    }
 
     /**
      * 定义404的JSON数据
@@ -69,10 +69,11 @@ public class ExceptionController implements ErrorController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "404")
+    @RequestMapping(produces = "*/*",value = "404")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> error404(HttpServletRequest request, HttpServletResponse response) {
         response.setCharacterEncoding("utf-8");
+//        response.setStatus(200);
 
         Map<String, Object> body = getErrorAttributes(request, isIncludeStackTrace(request, MediaType.TEXT_HTML));
         body.put("message", "资源不存在");
