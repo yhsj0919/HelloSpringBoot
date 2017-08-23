@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
- * say方法上添加的@MessageMapping注解和我们之前使用的@RequestMapping类似。
+ * websocket 控制器
  *
- * @SendTo 注解表示当服务器有消息需要推送的时候，会对订阅了@SendTo中路径的浏览器发送消息。
+ * @ServerEndpoint 标明了地址 和@RequestMapping类似
  */
 @ServerEndpoint(value = "/websocket")
 @Component
@@ -82,7 +82,7 @@ public class WsController {
     }
 
 
-    public void sendMessage(String message) throws IOException {
+    private void sendMessage(String message) throws IOException {
         this.session.getBasicRemote().sendText(message);
         //this.session.getAsyncRemote().sendText(message);
     }
@@ -101,15 +101,15 @@ public class WsController {
         }
     }
 
-    public static synchronized int getOnlineCount() {
+    private static synchronized int getOnlineCount() {
         return onlineCount;
     }
 
-    public static synchronized void addOnlineCount() {
+    private static synchronized void addOnlineCount() {
         WsController.onlineCount++;
     }
 
-    public static synchronized void subOnlineCount() {
+    private static synchronized void subOnlineCount() {
         WsController.onlineCount--;
     }
 }
