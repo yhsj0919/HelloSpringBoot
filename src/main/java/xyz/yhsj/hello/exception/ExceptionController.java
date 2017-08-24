@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -69,12 +68,10 @@ public class ExceptionController implements ErrorController {
      * @param request
      * @return
      */
-    @RequestMapping(produces = "*/*",value = "404")
+    @RequestMapping(value = "404", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> error404(HttpServletRequest request, HttpServletResponse response) {
         response.setCharacterEncoding("utf-8");
-//        response.setStatus(200);
-
         Map<String, Object> body = getErrorAttributes(request, isIncludeStackTrace(request, MediaType.TEXT_HTML));
         body.put("message", "资源不存在");
         HttpStatus status = getStatus(request);

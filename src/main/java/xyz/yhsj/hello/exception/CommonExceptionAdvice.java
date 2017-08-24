@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -41,7 +40,7 @@ public class CommonExceptionAdvice {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public String handleMissingServletRequestParameterException(MissingServletRequestParameterException e) {
         logger.error("缺少请求参数", e);
-        return "required_parameter_is_not_present";
+        return "缺少请求参数 required_parameter_is_not_present";
     }
 
     /**
@@ -51,7 +50,7 @@ public class CommonExceptionAdvice {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public String handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
         logger.error("参数解析失败", e);
-        return "could_not_read_json";
+        return "参数解析失败 could_not_read_json";
     }
 
     /**
@@ -104,7 +103,7 @@ public class CommonExceptionAdvice {
     @ExceptionHandler(ChangeSetPersister.NotFoundException.class)
     public String handleValidationException(ValidationException e) {
         logger.error("参数验证失败", e);
-        return "validation_exception";
+        return "参数验证失败";
     }
 
     /**
@@ -114,7 +113,7 @@ public class CommonExceptionAdvice {
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public String handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
         logger.error("不支持当前请求方法", e);
-        return "request_method_not_supported";
+        return "不支持当前请求方法";
     }
 
 
@@ -125,7 +124,7 @@ public class CommonExceptionAdvice {
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
     public String handleHttpMediaTypeNotSupportedException(Exception e) {
         logger.error("不支持当前媒体类型", e);
-        return "content_type_not_supported";
+        return "不支持当前媒体类型";
     }
 
     /**
